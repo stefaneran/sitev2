@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; 
-
-import "./Home.scss";
+import { HomeSection } from '../../components/sections/HomeSection';
+import './Home.scss';
 
 export class Home extends Component {
 
@@ -11,8 +11,10 @@ export class Home extends Component {
   render() {
     return(
       <div id="HomePage" className="container">
-        <h1>Homepage</h1>
+        <HomeSection />
       </div>
     );
   }
 }
+
+// TODO - Conditionaly add prop for animation based on cookies

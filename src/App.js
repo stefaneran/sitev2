@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+//import { Helmet } from "react-helmet";
 
 import "./styles/global.scss";
 
-// Dev
-import { Home } from './containers/Home/index';
+// Dev - Use cookies in future
+import { Home } from "./containers/Home/index";
 
 class App extends Component {
   render() {
@@ -16,3 +17,12 @@ class App extends Component {
 }
 
 export default App;
+
+/* TODO - Later
+<Helmet>
+  <meta charSet="utf-8" />
+  <title>My Title</title>
+  <link rel="canonical" href="http://mysite.com/example" />
+</Helmet>
+
+*/

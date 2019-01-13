@@ -46,7 +46,12 @@ table {
 }
 
 // Making the containers full width
-html, body, #root, .App, .container {
+html, body, #root, .App, .container, .section {
   width:100%;
   height:100%;
+}
+
+@font-face {
+	font-family: 'Geomanist';
+	src: url('../static/fonts/geomanist.ttf')
 }
