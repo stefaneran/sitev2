@@ -15,20 +15,23 @@ export class HomeSection extends Component {
       <div className="section">
         <div className="titles">
           <div className="ball" pos="1">
-            <div paralax="60"></div>
+            <div paralax="70"></div>
           </div>
           <div className="ball" pos="2">
-            <div paralax="60"></div>
+            <div paralax="70"></div>
           </div>
           <div className="ball" pos="3">
-            <div paralax="60"></div>
+            <div paralax="70"></div>
           </div>
           <div className="ball" pos="4">
-            <div paralax="60"></div>
+            <div paralax="70"></div>
           </div>
-          <h1 title="name" paralax="10">{text.name}</h1>
-          <h1 title="occ1" paralax="20">{text.occupation1}</h1>
-          <h1 title="occ2" paralax="10">{text.occupation2}</h1>
+          <div className="foreground">
+            <div paralax="50"></div>
+          </div>
+          <h1 title="name" paralax="30">{text.name}</h1>
+          <h1 title="occ1" paralax="10">{text.occupation1}</h1>
+          <h1 title="occ2" paralax="30">{text.occupation2}</h1>
         </div> 
       </div>
     );
@@ -40,7 +43,7 @@ paralax();
 function paralax() {
   $('body').mousemove(event => { 
     const maxOffset = 35;
-    const maxRotate = 6;
+    const maxRotate = 10;
     let { pageX, pageY } = event; 
     let width = window.innerWidth;
     let halfWidth = width / 2;
@@ -55,11 +58,16 @@ function paralax() {
     $('[paralax]').each(function() { 
       let me = $(this);
       let offset = 1 - (me.attr('paralax') / 100);
+      let transform = `rotateX(${Math.round(axisX*offset)}deg) rotateY(${Math.round(axisY*offset)}deg)`
+
+      if(me.hasClass('foreground')) {
+        transform = 'translate(-50%,-50%)';
+      }
 
       me.css({
         top: `${Math.round(top*offset)}px`,
         left: `${Math.round(left*offset)}px`,
-        transform: `rotateX(${Math.round(axisX*offset)}deg) rotateY(${Math.round(axisY*offset)}deg)`
+        transform: transform
       }); 
     });
   });
