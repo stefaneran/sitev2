@@ -51,6 +51,11 @@ html, body, #root, .App, .container, .section {
   height:100%;
 }
 
+html, body {
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
 @font-face {
 	font-family: 'Geomanist';
 	src: url('../static/fonts/geomanist.ttf')

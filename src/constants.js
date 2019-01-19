@@ -1,5 +1,6 @@
 
 export const constants = {
+
   text: {
     siteTitle: "Stefan M. - Web Developer",
     name: "Stefan Milenkovic",
@@ -9,5 +10,11 @@ export const constants = {
     linkedin: "LinkedIn",
     resume: "Resume",
     email: "Email"
+  },
+
+  animation: {
+    maxOffset: 45,
+    maxRotate: 15
   }
+
 }

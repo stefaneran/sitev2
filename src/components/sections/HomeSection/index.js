@@ -1,9 +1,12 @@
 import React, { Component } from 'react'; 
-import $ from 'jquery';
+import './HomeSection.scss'; 
 import { constants } from '../../../constants'; 
-import './HomeSection.scss';
-
+import { initAnimation, initParallax } from './functions.js';  
+import { SvgComponent } from '../../misc/SvgComponent.js';
+import { AnimatedText } from '../../misc/AnimatedText.js';
+import { ParallaxSquare } from '../../misc/ParallaxSquare.js';
 const { text } = constants;
+
 
 export class HomeSection extends Component {
   constructor(props) {
@@ -13,62 +16,36 @@ export class HomeSection extends Component {
   render() {
     return(
       <div className="section">
+        <div className="curtains"> 
+          <div className="curtain left">
+            <SvgComponent class="left" name="curlyBracket" />
+          </div>
+          <div className="curtain right">
+            <SvgComponent class="right" name="curlyBracket" /> 
+          </div>
+        </div>
         <div className="titles">
-          <div className="ball" pos="1">
-            <div paralax="70"></div>
-          </div>
-          <div className="ball" pos="2">
-            <div paralax="70"></div>
-          </div>
-          <div className="ball" pos="3">
-            <div paralax="70"></div>
-          </div>
-          <div className="ball" pos="4">
-            <div paralax="70"></div>
-          </div>
-          <div className="foreground">
-            <div paralax="50"></div>
-          </div>
-          <h1 title="name" paralax="30">{text.name}</h1>
-          <h1 title="occ1" paralax="10">{text.occupation1}</h1>
-          <h1 title="occ2" paralax="30">{text.occupation2}</h1>
+          <ParallaxSquare distance="75" layer="2" class="cover" />
+          <ParallaxSquare distance="45" layer="3" class="small" icon="github" />
+          <ParallaxSquare distance="45" layer="3" class="small" icon="linkedin" />
+          <ParallaxSquare distance="45" layer="3" class="small" icon="email" />
+          <ParallaxSquare distance="45" layer="3" class="small" icon="CV" />
+          <AnimatedText side="left"  distance="30" text={text.name} /><br/>
+          <AnimatedText side="right" distance="5" text={text.occupation1} /><br/>
+          <AnimatedText side="left"  distance="30" text={text.occupation2} />
         </div> 
       </div>
     );
   }
 }
 
-// TODO - ComponentDidMount 
-paralax();
-function paralax() {
-  $('body').mousemove(event => { 
-    const maxOffset = 35;
-    const maxRotate = 10;
-    let { pageX, pageY } = event; 
-    let width = window.innerWidth;
-    let halfWidth = width / 2;
-    let height = window.innerHeight; 
-    let halfHeight = height / 2;
+init();
+function init() {
 
-    let top  = Math.floor((((pageY-halfHeight)/halfHeight)*maxOffset)*((pageY > height)?1:-1));
-    let left = Math.floor((((pageX-halfWidth)/halfWidth)*maxOffset)*((pageX > width)?1:-1));
-    let axisX = Math.floor((((pageY-halfHeight)/halfHeight)*maxRotate)*((pageY > height)?-1:1));;
-    let axisY = Math.floor((((pageX-halfWidth)/halfWidth)*maxRotate)*((pageX > width)?1:-1));
+  // Check if there is a [skip anim] cookie
 
-    $('[paralax]').each(function() { 
-      let me = $(this);
-      let offset = 1 - (me.attr('paralax') / 100);
-      let transform = `rotateX(${Math.round(axisX*offset)}deg) rotateY(${Math.round(axisY*offset)}deg)`
-
-      if(me.hasClass('foreground')) {
-        transform = 'translate(-50%,-50%)';
-      }
-
-      me.css({
-        top: `${Math.round(top*offset)}px`,
-        left: `${Math.round(left*offset)}px`,
-        transform: transform
-      }); 
-    });
-  });
+  // Start the initial animations 
+  initAnimation();
+  // TODO - ComponentDidMount 
+  //initParallax();
 }

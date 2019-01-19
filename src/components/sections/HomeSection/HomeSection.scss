@@ -1,56 +1,130 @@
-
 @import '../../../styles/_variables.scss';
+@import '../../../styles/_mixins.scss';
 
+$zindex_curtains: 20;
+$zindex_titles: 10;
+$zindex_titles_text: 15;
+$zindex_main: 1;
 
-.titles {
+.section { 
+  @include bg-cover('../../../static/images/bg1.jpg'); 
+  z-index: $zindex_main;
 
-  position:absolute; 
-  top:50%; left:50%;
-  transform:translate(-50%,-50%);
+  .curtains {
+    position: absolute; z-index: $zindex_curtains;
+    top: 0px; left: 0px;
+    width: 100%; height: 100%;
+  
+    .curtain {
+      position: relative;
+      display: inline-block;
+      width: 50%; height: 100%;
+      background: $darkBackground;
+      transition: left 500ms, right 500ms;
 
-  width:75%; max-width:800px;
-  padding:40px;
+      &.left { right: 0% }
+      &.right { left: 0% }
 
-  h1 {
-    font-family:"Geomanist", sans-serif;
-    color:$lightBlueText;
-    font-size:3.5em; 
-    font-weight:bold;
-    text-align:center;
-  }
+      img {
+        position: absolute;
+        top: 50%;
+        width: auto; height: 80%;
+        transform: translateY(-50%);
 
-  [paralax] {
-    position:relative;
-    top:0px; left:0px; 
-    transition:top 50ms, left 50ms;
-  }
-
-  .ball {
-    position:absolute; 
-    width:10px; height:10px;
-
-    &>div {
-      width:10px; height:10px;
-      background:#FFF;
-      border-radius:50%;
+        &.left {
+          right: 0px;
+        }
+        &.right {
+          left: 0px;
+          transform: scaleX(-1) translateY(-50%);
+        }
+      }
     }
-    &[pos="1"] { top:0px; left:0px; }
-    &[pos="2"] { top:0px; right:0px; }
-    &[pos="3"] { bottom:0px; left:0px; }
-    &[pos="4"] { bottom:0px; right:0px; } 
   }
-
-  .foreground {
-    position:absolute;
-    top:50%; left:50%;
-    width:80%; height:80%;
+  
+  .titles {
+    position: absolute; z-index: $zindex_titles;
+    top: 50%; left: 50%;
     transform: translate(-50%,-50%);
+    width: 75%; max-width: 800px;
+    padding: 40px;
+    text-align: center;
 
-    [paralax] {
-      width:100%; height:100%; 
-      background:#000;
-      opacity:0.5;
-    } 
-  } 
+    .animatedText { 
+      display: inline-block;
+      z-index: $zindex_titles_text;
+
+      h1 {
+        position: relative; 
+        margin-bottom: 15px;
+        font-family: "Geomanist", sans-serif;
+        color: $lightBlueText;
+        font-size: 3.5em; 
+        font-weight: bold; 
+
+        span {
+          visibility: hidden;
+        }
+
+        .over {
+          position:absolute;
+          top: 50%;
+          width: 0%; height: 116%;
+          transform: translateY(-50%);
+          background: $lightBlueText;
+          transition: width 500ms;
+        }
+      }
+    }
+  
+    [parallaxDistance] {
+      position: relative;
+      top: 0px; left: 0px;  
+    }
+
+    .parallaxSquare {
+      position: absolute;
+      &>div { width: 100%; height: 100%; } 
+
+      &.cover {
+        top: 50%; left: 50%;
+        width: 60%; height: 80%;
+        min-width: 480px;
+        transform: translate(-50%,-50%);
+        &>div { 
+          background: $darkBackground;
+          opacity:0.5;
+        }
+      }
+      &.small {
+        width: 80px; height: 80px;
+        &>div { 
+          background: $darkBackground;
+          opacity:0.8;
+        }
+
+        &.github {
+          top: -15%; right: 5%;
+        }
+        &.linkedin {
+          bottom: -15%; left: 5%;
+        }
+        &.email {
+          top: -15%; left: 5%;
+        }
+        &.CV {
+          bottom: -15%; right: 5%;
+        }
+      }
+    }
+  
+    .foreground { 
+  
+      [parallaxDistance] {
+        width: 100%; height: 100%; 
+        background: #000;
+        opacity: 0.5;
+      }
+    }
+  }
 }
-
