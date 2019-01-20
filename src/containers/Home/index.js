@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; 
-import { HomeSection } from '../../components/sections/HomeSection';
+import HomeSection from '../../components/sections/HomeSection';
 import './Home.scss';
 
 export class Home extends Component {
@@ -12,6 +12,7 @@ export class Home extends Component {
     return(
       <div id="HomePage" className="container">
         <HomeSection />
+        <div className="section"></div>
       </div>
     );
   }

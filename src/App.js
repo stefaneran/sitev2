@@ -18,7 +18,7 @@ class App extends Component {
 
 export default App;
 
-/* TODO - Later
+/* TODO - Use react-helmet to apply stuff liek site title (constants)
 <Helmet>
   <meta charSet="utf-8" />
   <title>My Title</title>
