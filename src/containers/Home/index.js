@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; 
 import HomeSection from '../../components/sections/HomeSection';
-import './Home.scss';
+import { initAnimation } from './functions.js';
 
 export class Home extends Component {
 
@@ -18,4 +18,15 @@ export class Home extends Component {
   }
 }
 
-// TODO - Conditionaly add prop for animation based on cookies
+// LT-TODO - Conditionaly add prop for animation based on cookies
+
+init();
+function init() {
+
+  // Check if there is a [skip anim] cookie
+
+  // Start the initial animations 
+  initAnimation();
+  // LT-TODO - ComponentDidMount
+  //initParallax();
+}

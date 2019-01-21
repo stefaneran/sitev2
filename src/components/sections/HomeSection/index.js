@@ -1,19 +1,26 @@
 import React, { Component } from 'react'; 
-import SvgComponent from '../../misc/SvgComponent.js';
-import AnimatedText from '../../misc/AnimatedText.js';
-import ParallaxIcon from '../../misc/ParallaxIcon.js';
+import SvgComponent from '../../SvgComponent.js';
+import Titles from '../../Titles.js';
+import ParallaxIcon from '../../ParallaxIcon.js';
 import './HomeSection.scss'; 
-import { constants } from '../../../constants'; 
-import { initAnimation, initParallax, initIconHover } from './functions.js';  
+import { constants } from '../../../containers/Home/constants';
 
-const { titles } = constants.text.sections.HomeSection;
+import { store } from '../../../store';
 
-export default class HomeSection extends Component {
+const { titles, icons } = constants;
+
+class HomeSection extends Component {
   constructor(props) {
     super(props);
   }
-
+  componentDidMount() {
+    // TODO - Start animation here
+  }
   render() {
+    const renderIcons = icons.map((icon, index) => (
+      <ParallaxIcon key={index} parallaxdistance={icon.parallaxdistance} icon={icon.icon} />
+    ));
+
     return(
       <div className="section homeSection">
         <div className="curtains">
@@ -24,28 +31,16 @@ export default class HomeSection extends Component {
             <SvgComponent class="right" name="curlyBracket" /> 
           </div>
         </div>
-        <div className="titles">
-          <ParallaxIcon distance="45" layer="2" class="cover" />
-          <ParallaxIcon distance="45" layer="3" class="small" icon="github" />
-          <ParallaxIcon distance="45" layer="3" class="small" icon="linkedin" />
-          <ParallaxIcon distance="45" layer="3" class="small" icon="gmail" />
-          <ParallaxIcon distance="45" layer="3" class="small" icon="CV" />
-          <AnimatedText distance="35" side="left"  title={titles.default.title1} /><br/>
-          <AnimatedText distance="5"  side="right" title={titles.default.title2} /><br/>
-          <AnimatedText distance="35" side="left"  title={titles.default.title3} />
+        <div className="frontend">
+          {/* TODO - Just make this a regular div */}
+          {/*<ParallaxIcon distance="45" layer="2" class="cover" />*/}
+          {/* TODO - Make a similar solution like with titles */}
+          {renderIcons}
+          <Titles data={titles.data} />
         </div>
       </div>
     );
   }
 }
 
-init();
-function init() {
-
-  // Check if there is a [skip anim] cookie
-
-  // Start the initial animations 
-  initAnimation();
-  // TODO - ComponentDidMount
-  //initParallax();
-}
+export default HomeSection;

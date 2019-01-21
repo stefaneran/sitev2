@@ -1,5 +1,8 @@
 import $ from 'jquery';
-import { constants } from '../../../constants';
+import { constants } from '../../constants';
+// TODO - Refactor so I don't have to import these inside this file
+import { store } from '../../store';
+import { iconHover } from '../../actions/home';
 
 const { maxOffset, maxRotate, maxBgOffset } = constants.animation.offsets;
 const { delays } = constants.animation; 
@@ -17,7 +20,8 @@ export function initAnimation() {
     openCurlyBrackets();
 
     setTimeout(() => {
-      // Display the titles - TODO start parallax and hover after everything done
+      // TODO - start parallax and hover after everything done
+      // Display the titles
       uncoverTextAnimation();
       initParallax();
       initIconHover();
@@ -35,21 +39,21 @@ export function initAnimation() {
     $('.curtain.right').css({ left: '50%' });
   }
   function uncoverTextAnimation() {
-    $('.animatedText').each(function () {
+    $('.title').each(function () {
       let me = $(this);
       let title = me.find('span');
       let overlay = me.find('.over');
-      let side = me.attr('side');
+      let animside = me.attr('animside');
 
-      overlay.css(side, '0px');
+      overlay.css(animside, '0px');
       overlay.css('width', '100%');
 
       setTimeout(() => {
         title.css('visibility', 'visible');
 
-        overlay.css(side, '');
-        side = (side == 'left' ? 'right' : 'left');
-        overlay.css(side, '0px');
+        overlay.css(animside, '');
+        animside = (animside == 'left' ? 'right' : 'left');
+        overlay.css(animside, '0px');
 
         setTimeout(() => {
           overlay.css('width', '0%');
@@ -81,6 +85,7 @@ function initParallax() {
     let axisY = calculate(pageX, halfWidth, innerWidth, maxRotate, 1);
     let bgPos = calculate(pageX, halfWidth, innerWidth, maxBgOffset, -1);
 
+    // TODO: Let it use 2 more decimals
     // Move position of background image
     $('.homeSection').css('background-position-x', `${50 + bgPos}%`);
 
@@ -127,19 +132,22 @@ function initParallax() {
   }); 
 }
 
-// TODO - Change/Delete when applying animation from inside component (REDUX)
 // Initialize the hover event listeners for icons
 function initIconHover() {
   $('.homeSection .icon').hover(
   // Display secondary text
   function() {
-    let me = $(this);
-    //let delays = [100, 50, 150];
+
+
+
+    // TODO - This should be done somewhere else
+    store.dispatch(iconHover('github'));
+
+
+
     let delays = [75, 50, 25];
     let count = 0;
-    $('.titles .animatedText').each(function() {
-      let secondary = $(this).find('h1.secondary');
-      secondary.html(me.closest('.parallaxIcon').attr('icon'));
+    $('.titles .title').each(function() {
       setTimeout(() => {
         let primary = $(this).find('h1.primary');
         primary.css('margin-top', '-1em');
@@ -151,7 +159,7 @@ function initIconHover() {
   function() {
     let delays = [75, 50, 25];
     let count = 0;
-    $('.titles .animatedText').each(function() {
+    $('.titles .title').each(function() {
       setTimeout(() => {
         let primary = $(this).find('h1.primary');
         primary.css('margin-top', '0em');

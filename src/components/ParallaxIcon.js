@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SvgComponent from './SvgComponent';
 
-export default class ParallaxIcon extends Component {
+class ParallaxIcon extends Component {
   constructor(props) {
     super(props);
   }
@@ -10,20 +10,19 @@ export default class ParallaxIcon extends Component {
       return null;
     
     return(
-      <div className="icon" parallaxdistance={this.props.distance}>
+      <div className="icon" parallaxdistance={this.props.parallaxdistance}>
         <SvgComponent name={this.props.icon} />
       </div>
     )
   }
   render() {
     return (
-      <div 
-        className={`parallaxIcon ${this.props.class || ''}`}
-        style={{ zIndex: this.props.layer }}
-        icon={this.props.icon}>
-        <div className="bg" parallaxdistance={this.props.distance}></div>
+      <div className="parallaxIcon" icon={this.props.icon}>
+        <div className="bg" parallaxdistance={this.props.parallaxdistance}></div>
         {this.renderIcon()}
       </div>
     );
   }
 }
+
+export default ParallaxIcon;

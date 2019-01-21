@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 //import { Helmet } from "react-helmet";
-
-import "./styles/global.scss";
-
-// Dev - Use cookies in future
+import "./styles/global.scss"; 
 import { Home } from "./containers/Home/index";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Home /> 
+        <Home />
       </div>
     );
   }
@@ -18,11 +15,11 @@ class App extends Component {
 
 export default App;
 
-/* TODO - Use react-helmet to apply stuff liek site title (constants)
+// LT-TODO - Use react-helmet to apply stuff liek site title (constants)
+/* 
 <Helmet>
   <meta charSet="utf-8" />
   <title>My Title</title>
   <link rel="canonical" href="http://mysite.com/example" />
 </Helmet>
-
 */
