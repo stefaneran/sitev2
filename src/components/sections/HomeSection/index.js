@@ -1,11 +1,9 @@
 import React, { Component } from 'react'; 
 import SvgComponent from '../../SvgComponent.js';
 import Titles from '../../Titles.js';
-import ParallaxIcon from '../../ParallaxIcon.js';
+import Icon from '../../Icon.js';
 import './HomeSection.scss'; 
 import { constants } from '../../../containers/Home/constants';
-
-import { store } from '../../../store';
 
 const { titles, icons } = constants;
 
@@ -18,9 +16,8 @@ class HomeSection extends Component {
   }
   render() {
     const renderIcons = icons.map((icon, index) => (
-      <ParallaxIcon key={index} parallaxdistance={icon.parallaxdistance} icon={icon.icon} />
+      <Icon key={index} parallaxdistance={icon.parallaxdistance} icon={icon.icon} />
     ));
-
     return(
       <div className="section homeSection">
         <div className="curtains">
@@ -34,7 +31,6 @@ class HomeSection extends Component {
         <div className="frontend">
           {/* TODO - Just make this a regular div */}
           {/*<ParallaxIcon distance="45" layer="2" class="cover" />*/}
-          {/* TODO - Make a similar solution like with titles */}
           {renderIcons}
           <Titles data={titles.data} />
         </div>

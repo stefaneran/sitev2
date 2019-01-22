@@ -17,7 +17,7 @@ ReactDOM.render(
 serviceWorker.unregister();
 
 
-// TODO - Use Redux (cheatsheet)
+// Use Redux (cheatsheet)
 /*
 const mapStateToProps = (state) => {
   return {
