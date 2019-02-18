@@ -19,7 +19,7 @@ const Icon = props => {
         </div>
 
         {(icon!=='gmail') ?
-          <a href={link} target="_blank" /> :
+          <a href={link} target="_blank" rel="noopener noreferrer"></a> :
           <button onClick={handleClick}></button>
         }
       </div>

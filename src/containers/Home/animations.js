@@ -32,7 +32,7 @@ function uncoverTextAnimation() {
       title.css('visibility', 'visible');
 
       overlay.css(animside, '');
-      animside = (animside == 'left' ? 'right' : 'left');
+      animside = (animside === 'left' ? 'right' : 'left');
       overlay.css(animside, '0px');
 
       setTimeout(() => {
