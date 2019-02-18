@@ -1,3 +1,4 @@
+@import './variables';
 
 // Global reset
 
@@ -59,4 +60,47 @@ html, body {
 @font-face {
 	font-family: 'Geomanist';
 	src: url('../static/fonts/geomanist.ttf')
+}
+
+.ReactModal__Overlay.ReactModal__Overlay--after-open {
+	z-index:100 !important;
+
+	.email-modal {
+		position: absolute;
+		top:0; left:0;
+		width:100%; height: 100%;
+
+		.box {
+			position:absolute;
+			top:50%; left:50%;
+			z-index:95; 
+			transform: translate(-50%, -50%);
+			
+
+			.parallax-parent {
+				padding: 30px;
+				background: $darkBackground;
+				font-family: 'Geomanist';
+				font-size:26px;
+				font-weight: bold;
+				color:$lightBlueText;
+
+				&>h1:first-child {
+					margin-bottom: 15px;
+				}
+			}
+		}
+
+		button {
+			position: absolute;
+			top:0; left:0;
+			z-index:90; 
+			width:100%; height: 100%;
+			cursor:pointer;
+			background:none;
+			margin: 0;
+			padding: 0;
+			border:none;
+		}
+	}
 }

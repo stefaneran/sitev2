@@ -1,0 +1,47 @@
+@import '../../styles/_variables.scss';
+
+.title {
+  display: inline-block;
+  z-index: 15;
+  height:3.5em;
+  overflow-y: hidden;
+
+  h1 {
+    position: relative;
+    color: $lightBlueText;
+    font-family: "Geomanist", sans-serif;
+    font-size: 3.5em; 
+    font-weight: bold;
+    transition: margin-top 250ms;
+
+    span {
+      visibility: hidden;
+    }
+
+    .over {
+      position:absolute;
+      top: 50%;
+      width: 0%; height: 116%;
+      transform: translateY(-50%);
+      background: $lightBlueText;
+      transition: width 500ms;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .titles {
+    position:absolute;
+    top:50%; left:50%;
+    transform:translate(-50%, -60%);
+    width:100%;
+
+    .title {
+      height:2.5em;
+
+      h1 {
+        font-size:2.5em;
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+@import '../../styles/_variables.scss';
+
+.curtains {
+  position: absolute; z-index: 20;
+  top: 0px; left: 0px;
+  width: 100%; height: 100%;
+  pointer-events: none;
+
+  .curtain {
+    position: relative;
+    display: inline-block;
+    width: 50%; height: 100%;
+    background: $darkBackground;
+    transition: left 500ms, right 500ms;
+
+    &.left { right: 0% }
+    &.right { left: 0% }
+
+    img {
+      position: absolute;
+      top: 50%;
+      width: auto; height: 80%;
+      transform: translateY(-50%);
+
+      &.left {
+        right: 0px;
+      }
+      &.right {
+        left: 0px;
+        transform: scaleX(-1) translateY(-50%);
+      }
+    }
+  }
+}

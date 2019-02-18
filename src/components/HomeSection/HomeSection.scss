@@ -1,0 +1,57 @@
+@import '../../styles/_variables.scss';
+@import '../../styles/_mixins.scss';
+
+.section { 
+  @include bg-cover('../../static/images/bg1.jpg'); 
+  background-position-x: 50%;
+  z-index: 1;
+  
+  .frontend {
+    position: absolute; z-index: 10;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 75%; max-width: 800px;
+    padding: 40px;
+    text-align: center;
+
+    .titles-background {
+      position: absolute;
+      z-index: 0;
+      top: 50%; left: 50%;
+      width: 60%; height: 80%;
+      min-width: 480px;
+      transform: translate(-50%,-50%);
+      
+      .color-fill {
+        width:100%; height:100%;
+        background: $darkBackground;
+        opacity:0.8;
+      }
+    }
+  
+    [parallaxdistance] {
+      position: relative;
+      top: 0px; left: 0px;  
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+
+  .section { 
+
+    .frontend {
+      position:static;
+      transform:none;
+      width:100%;
+      padding:0;
+
+      .titles-background {
+        height: 40%;
+        transform: translate(-50%,-60%);
+      }
+    }
+
+  }
+
+}
