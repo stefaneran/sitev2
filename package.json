@@ -1,7 +1,7 @@
 {
   "name": "sitev2",
   "version": "0.1.0",
-  "private": false,
+  "private": true,
   "homepage": "https://stefaneran.github.io/app",
   "dependencies": {
     "bootstrap": "^4.3.1",
