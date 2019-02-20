@@ -3,11 +3,11 @@ import SvgComponent from '../SvgComponent';
 
 const Curtain = props => {
 
-  const { side } = props;
+  const { side, loaded } = props;
 
   return (
     <div className={`curtain ${side}`}>
-      <SvgComponent className={side} name="curlyBracket" />
+      <SvgComponent className={side} name="curlyBracket" loaded={loaded} />
     </div>
   );
 }

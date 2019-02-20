@@ -3,7 +3,7 @@ import SvgComponent from '../SvgComponent';
 
 const Icon = props => {
 
-  const { icon, link, parallaxdistance, handleHover, handleClick } = props;
+  const { icon, link, parallaxdistance, handleHover, handleClick, loaded } = props;
   
   return (
     <div 
@@ -15,7 +15,7 @@ const Icon = props => {
         parallaxdistance={parallaxdistance}>
         <div className="bg"></div>
         <div className="image">
-          <SvgComponent name={icon} />
+          <SvgComponent loaded={loaded} name={icon} />
         </div>
 
         {(icon!=='gmail') ?

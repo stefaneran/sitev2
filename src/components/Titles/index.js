@@ -9,7 +9,7 @@ const Titles = props => {
   return (
     <div className="titles">
       {data.map((title, index) => (
-        <div>
+        <div key={index}>
           <Title 
             key={index} 
             defaultTitle={title.defaultTitle} 

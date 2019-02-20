@@ -4,7 +4,7 @@ import './style.scss';
 
 const Icons = props => {
 
-  const { handleHover, handleClick } = props;
+  const { handleHover, handleClick, loaded } = props;
   const icons = props.data;
 
   return(
@@ -16,6 +16,7 @@ const Icons = props => {
           link={icon.link}
           handleHover={handleHover}
           handleClick={handleClick}
+          loaded={loaded}
           parallaxdistance={icon.parallaxdistance} />
       ))}
     </div>

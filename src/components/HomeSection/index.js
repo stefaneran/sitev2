@@ -14,7 +14,7 @@ import {
   flipTitlesDown 
 } from '../../containers/Home/animations';
 
-const { titles, icons } = container_constants;
+const { titles, icons, imageNum } = container_constants;
 const { general } = general_constants.text;
 
 class HomeSection extends Component {
@@ -24,25 +24,37 @@ class HomeSection extends Component {
     this.state = {
       textUp: false,
       secondaryTitles: ["","",""],
-      modalIsOpen: false
+      modalIsOpen: false,
+      loadedImages: 0,
+      startedAnimation: false
     }
-  }
-  componentDidMount() {
-    initAnimation();
   }
   componentDidUpdate() {
-    if(this.state.textUp) {
-      flipTitlesUp();
+
+    // TODO - Do same but for background image
+
+    // If main animation didn't start yet, means we are waiting for all images to load
+    if(!this.state.startedAnimation) {
+      // If all images finished loading
+      if(this.state.loadedImages === imageNum) {
+        this.setState({startedAnimation: true});
+        initAnimation();
+      }
+      return;
     }
-    else {
-      flipTitlesDown();
-    }
+
+    // Checks whether to show or hide secondary titles
+    this.state.textUp ? flipTitlesUp() : flipTitlesDown();
+
   }
   openModal = () => {
     this.setState({modalIsOpen: true});
   }
   closeModal = () => {
     this.setState({modalIsOpen: false});
+  }
+  imageLoaded = () => {
+    this.setState({loadedImages: this.state.loadedImages + 1});
   }
   // When hovering over an icon, change state for secondary text
   changeText = (e) => {
@@ -60,13 +72,19 @@ class HomeSection extends Component {
   render() {
     return(
       <div className="section homeSection">
-        <Curtains />
+        <Curtains loaded={this.imageLoaded} />
         <div className="frontend">
           <div className="titles-background">
             <div className="color-fill" parallaxdistance="40"></div>
           </div>
-          <Icons data={icons} handleHover={this.changeText} handleClick={this.openModal} />
-          <Titles data={titles.data} secondaryTitles={this.state.secondaryTitles} />
+          <Icons 
+            data={icons} 
+            handleHover={this.changeText} 
+            handleClick={this.openModal}
+            loaded={this.imageLoaded} />
+          <Titles 
+            data={titles.data} 
+            secondaryTitles={this.state.secondaryTitles} />
         </div>
         <Modal className="email-modal" isOpen={this.state.modalIsOpen}>
           <div className="box">

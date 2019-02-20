@@ -1,5 +1,7 @@
 
 export const constants = {
+
+  imageNum: 5,
   
   // Titles data
   titles: {
