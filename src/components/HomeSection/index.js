@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+import Background from '../Background';
 import Curtains from '../Curtains';
 import Titles from '../Titles';
 import Icons from '../Icons';
@@ -30,8 +31,6 @@ class HomeSection extends Component {
     }
   }
   componentDidUpdate() {
-
-    // TODO - Do same but for background image
 
     // If main animation didn't start yet, means we are waiting for all images to load
     if(!this.state.startedAnimation) {
@@ -72,6 +71,7 @@ class HomeSection extends Component {
   render() {
     return(
       <div className="section homeSection">
+        <Background src={"bg1.jpg"} loaded={this.imageLoaded} />
         <Curtains loaded={this.imageLoaded} />
         <div className="frontend">
           <div className="titles-background">

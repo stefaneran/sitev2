@@ -1,7 +1,7 @@
 
 export const constants = {
 
-  imageNum: 5,
+  imageNum: 7,
   
   // Titles data
   titles: {
@@ -46,8 +46,7 @@ export const constants = {
   animation: {
     offsets: {
       maxOffset: 45,
-      maxRotate: 15,
-      maxBgOffset: 8
+      maxRotate: 15
     },
     delays: {
       before: 200,

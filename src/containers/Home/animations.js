@@ -2,7 +2,7 @@ import $ from 'jquery';
 import { constants } from './constants';
 
 const { delays, offsets } = constants.animation;
-const { maxOffset, maxRotate, maxBgOffset } = offsets;
+const { maxOffset, maxRotate } = offsets;
 
 // Used in parallax calculation
 const calculate = (coord, half, full, max, modif) => {
@@ -102,10 +102,6 @@ export function initParallax() {
     let left = calculate(pageX, halfWidth, innerWidth, maxOffset, -1);
     let axisX = calculate(pageY, halfHeight, innerHeight, maxRotate, -1);
     let axisY = calculate(pageX, halfWidth, innerWidth, maxRotate, 1);
-    let bgPos = calculate(pageX, halfWidth, innerWidth, maxBgOffset, -1);
-
-    // Move position of background image
-    $('.homeSection').css('background-position-x', `${50 + bgPos}%`);
 
     // Apply parallax effects on all relevant components
     $('[parallaxdistance]').each(function () {

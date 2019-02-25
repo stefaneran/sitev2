@@ -9,7 +9,7 @@ const Titles = props => {
   return (
     <div className="titles">
       {data.map((title, index) => (
-        <div key={index}>
+        <React.Fragment>
           <Title 
             key={index} 
             defaultTitle={title.defaultTitle} 
@@ -17,7 +17,7 @@ const Titles = props => {
             animside={title.animside}
             parallaxdistance={title.parallaxdistance} />
           <br />
-        </div>
+        </React.Fragment>
       ))}
     </div>
   );

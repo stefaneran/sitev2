@@ -2,8 +2,6 @@
 @import '../../styles/_mixins.scss';
 
 .section { 
-  @include bg-cover('../../static/images/bg1.jpg'); 
-  background-position-x: 50%;
   z-index: 1;
   
   .frontend {
